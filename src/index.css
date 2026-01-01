@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+
+@theme {
+    --breakpoint-*: initial;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1170px;
+    --breakpoint-xxl: 1320px;
+    --font-inter: "Open Sans", sans-serif;
+    /* --color-primary: #89D32A ;
+    --color-secondary: #313131 ;
+    --color-para: #676767 ; */
+}
+
+@utility container {
+    margin-inline: auto;
+}
+.navul li:hover {
+    border-bottom: 1px solid;
+    transition: linear;
+}
+
+/* .slick-dots li.slick-active button::before {
+  opacity: 100;
+  color: #DB4444 !important;
+  border: solid 1px white !important;
+  width: 14px !important;
+}
+.slick-dots li button{
+    height: 105px !important;
+}
+
+.slick-dots li button::before{
+    color: #ffffff6e !important;
+}
+.slick-dots{
+    width: 84.5% !important;
+} */
+.slick-dots {
+  bottom: 8px !important;
+  width: 86% !important;
+
+}
+.slick-dots .slick-active div{
+background-color: #DB4444;
+border: 2px solid white;
+}
