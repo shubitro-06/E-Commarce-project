@@ -13,17 +13,12 @@ const Banner = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         appendDots: dots => (
-      <div
-        style={{
-         
-        }}
-      >
+      <div>
         <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
     customPaging: i => (
-      <div className='h-3 w-3 rounded-full bg-gray-500'
-      >
+      <div className='h-3 w-3 rounded-full bg-gray-500'>
       </div>
     )
     };

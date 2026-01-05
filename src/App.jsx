@@ -5,6 +5,8 @@ import './App.css'
 import Header from './Header'
 import NavBar from './NavBar'
 import Banner from './Banner'
+import FlashSalePart from './FlashSalePart'
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
    <Header></Header>
    <NavBar></NavBar>
    <Banner></Banner>
+   <FlashSalePart></FlashSalePart>
     </>
   )
 }
