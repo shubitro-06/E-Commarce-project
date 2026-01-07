@@ -18,7 +18,7 @@ const CountDown = () => {
             <div>
                 <p className='text-[16px] font-medium font-pop'>Days <br /></p>
                 <div className='flex  justify-center gap-5 font-bold text-[36px]'>
-                    0{Time.days}
+                    {Time.days}
                     <h6 className='text-primary'>:</h6>
                 </div>
             </div>

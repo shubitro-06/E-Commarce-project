@@ -8,9 +8,8 @@ import Banner from './Banner'
 import FlashSalePart from './FlashSalePart'
 import CategoryPart from './CategoryPart'
 import BestSellPart from './BestSellPart'
-
-
-
+import MusicPart from './components/MusicPart'
+import OurProductPart from './OurProductPart'
 
 
 function App() {
@@ -18,12 +17,14 @@ function App() {
 
   return (
     <>
-   <Header></Header>
-   <NavBar></NavBar>
-   <Banner></Banner>
-   <FlashSalePart></FlashSalePart>
-   <CategoryPart></CategoryPart>
-   <BestSellPart></BestSellPart>
+      <Header></Header>
+      <NavBar></NavBar>
+      <Banner></Banner>
+      <FlashSalePart></FlashSalePart>
+      <CategoryPart></CategoryPart>
+      <BestSellPart></BestSellPart>
+      <MusicPart></MusicPart>
+      <OurProductPart></OurProductPart>
     </>
   )
 }
