@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { countDownDateAndTime } from 'countdown-date-time';
 
 const CountDown = () => {
-    const conduct_date = '2026-01-10 16:54:00';
+    const conduct_date = '2026-05-10 16:54:00';
     const [Time, setTime] = useState({})
 
     useEffect(() => {

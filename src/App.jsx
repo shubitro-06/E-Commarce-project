@@ -6,6 +6,10 @@ import Header from './Header'
 import NavBar from './NavBar'
 import Banner from './Banner'
 import FlashSalePart from './FlashSalePart'
+import CategoryPart from './CategoryPart'
+import BestSellPart from './BestSellPart'
+
+
 
 
 
@@ -18,6 +22,8 @@ function App() {
    <NavBar></NavBar>
    <Banner></Banner>
    <FlashSalePart></FlashSalePart>
+   <CategoryPart></CategoryPart>
+   <BestSellPart></BestSellPart>
     </>
   )
 }

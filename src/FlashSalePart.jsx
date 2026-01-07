@@ -25,7 +25,7 @@ const FlashSalePart = () => {
   const { className, style, onClick } = props;
   return (
     <div
-      className="absolute -top-10 right-15 text-xl"
+      className="absolute -top-20 right-15 text-xl"
       
       onClick={onClick}
      >
@@ -38,7 +38,7 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className="absolute -top-10 right-25 text-xl "
+      className="absolute -top-20 right-25 text-xl "
       
       onClick={onClick}
     >
@@ -54,12 +54,12 @@ function SamplePrevArrow(props) {
 
             <SecHead
               header="Today's"
-              heading="Flash Sale"
+              heading="Flash Sales"
             />
             <CountDown></CountDown>
           </div>
 
-          <div>
+          <div className='mt-10'>
             <Slider {...settings}>
 
               <Card
