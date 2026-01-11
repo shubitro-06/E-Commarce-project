@@ -19,7 +19,7 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent }) => {
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>
-                    <button className='bg-black w-full py-2 px-[87px] text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear'>
+                    <button className='bg-black w-full py-2 px-21.75 text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear'>
                         Add to Cart
                     </button>
                 </div>
