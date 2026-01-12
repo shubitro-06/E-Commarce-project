@@ -12,6 +12,7 @@
     --breakpoint-xxl: 1320px;
     --font-pop: "Poppins", sans-serif;
     --color-primary: #DB4444 ;
+    --animate-pop: animate-pulse 2s linear infinite;
     /* --color-secondary: #313131 ;
     --color-para: #676767 ; */
 }
@@ -48,4 +49,20 @@
 .slick-dots .slick-active div{
 background-color: #DB4444;
 border: 2px solid white;
+}
+
+@keyframes animate-pulse{
+    0%{
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7),  0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    40%{
+        box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    80%{
+        box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 30px rgba(255,109,74,0);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(255,109,74,0.0),  0 0 0 30px rgba(255,109,74,0);
+    }
+    
 }
