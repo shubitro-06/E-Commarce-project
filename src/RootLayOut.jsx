@@ -11,21 +11,17 @@ import OurProductPart from './OurProductPart'
 import NewArrivalPart from './NewArrivalPart'
 import DelivarPart from './DelivarPart'
 import Footer from './Footer'
+import Home from './Pages/Home';
 
 function RootLayOut() {
     return (
         <>
             <Header></Header>
             <NavBar></NavBar>
-            <Banner></Banner>
-            <FlashSalePart></FlashSalePart>
-            <CategoryPart></CategoryPart>
-            <BestSellPart></BestSellPart>
-            <MusicPart></MusicPart>
-            <OurProductPart></OurProductPart>
-            <NewArrivalPart></NewArrivalPart>
-            <DelivarPart></DelivarPart>
-            <Outlet></Outlet>
+            <Outlet 
+              
+            />
+            
             <Footer></Footer>
         </>
     );

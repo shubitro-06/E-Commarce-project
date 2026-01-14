@@ -2,8 +2,9 @@ import React from 'react'
 import { FaStar } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Rate } from 'antd';
 
-const Card = ({ Name, price, DisPrice, review, imgs, percent }) => {
+const Card = ({ Name, price, DisPrice, review, imgs, percent,rating }) => {
     return (
         <>
             <div className='font-pop h-87.5 w-67.5 '>
@@ -12,7 +13,7 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent }) => {
                     <img src={imgs} alt="" />
                     <div className='flex justify-between '>
                         <div className='absolute top-3 left-3'>
-                            <h6 className='bg-primary text-white h-6.5 text-center w-13.75'>-{percent}%</h6>
+                            <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>
                         </div>
                         <div className='absolute top-3 right-3 flex flex-col gap-2'>
                             <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center' />
@@ -30,11 +31,7 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent }) => {
                 </div>
                 <div className='flex gap-2 items-center'>
                     <div className='flex text-[#FFAD33]'>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                        <Rate allowHalf defaultValue={rating} />
                     </div>
                     <h4 className='text-[#00000046]'>({review})</h4>
                 </div>

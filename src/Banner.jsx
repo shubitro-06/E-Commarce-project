@@ -24,7 +24,7 @@ const Banner = () => {
     };
     return (
         <>
-            <div className='border-t border-[#00000046]'>
+            <div>
 
                 <div className="container">
                     <div className='flex gap-x-12.25'>
