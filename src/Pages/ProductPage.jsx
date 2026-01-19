@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
 import BreadCrump from '../components/BreadCrump';
+import Paginate from '../components/Paginate';
 
 
 const ProductPage = () => {
@@ -56,7 +57,7 @@ const ProductPage = () => {
                     </div>
 
                     <div className='w-[80%]'>
-                        <div className='flex justify-end gap-3 mt-[50px]'>
+                        <div className='flex justify-end gap-3 mt-12.5'>
                             <p> Show : </p>
                             <select name="" id="" className='border-[#00000071] border py-0.5 px-9 rounded-[5px] '>
                                 <option value="">3</option>
@@ -66,7 +67,7 @@ const ProductPage = () => {
                             </select>
                         </div>
                         <div className='flex flex-wrap mt-15 justify-between gap-y-10'>
-                            {
+                            {/* {
                                 product.map((item) => {
                                     console.log(product)
                                     return (
@@ -74,14 +75,16 @@ const ProductPage = () => {
                                             imgs={item.thumbnail}
                                             Name={item.title}
                                             DisPrice={Math.round(item.price - (item.price * item.discountPercentage)/100)}
-                                            price={item.price}
+                                            price={Math.round(item.price)}
                                             review={item.reviews.length}
-                                            percent={item.discountPercentage}
+                                            percent={Math.round(item.discountPercentage)}
                                             rating={item.rating}
                                         />
                                     )
                                 })
-                            }
+                            } */}
+                            <Paginate   itemsPerPage ={6} products={product}
+                             />
                         </div>
                     </div>
                 </div>

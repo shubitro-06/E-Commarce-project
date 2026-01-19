@@ -6,7 +6,7 @@ const MusicPart = () => {
   return (
     <>
       <div className="container">
-        <div className='bg-[url(src/assets/Music.png)] h-125 w-330 bg-cover bg-center bg-no-repeat mt-35 mb-25'>
+        <div className='bg-[url(/src/assets/Music.png)] h-125 w-330 bg-cover bg-center bg-no-repeat mt-35 mb-25'>
         <div className='pl-14 pt-17.25'>
  
             <p className='text-[#00FF66] text-[16px] font-semibold font-pop'>Categories</p>
