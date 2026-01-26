@@ -2,19 +2,46 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
 import BreadCrump from '../components/BreadCrump';
 import Paginate from '../components/Paginate';
+import Skeleton from '../components/skeleton';
+// import { Skeleton } from 'antd';
+import axios from 'axios';
 
 
 const ProductPage = () => {
 
     const [product, setProduct] = useState([])
+    const [load,setLoad] = useState(false)
+    const [category,setCategory] = useState([])
 
-    useEffect(() => {
-        fetch('https://dummyjson.com/products')
-            .then(res => res.json())
-            .then((data) => setProduct(data.products));
+    // useEffect(() => {
+    //     fetch('https://dummyjson.com/products')
+    //         .then(res => res.json())
+    //         .then((data) => setProduct(data.products));
+    //         setLoad(true)
+    // }, [])
 
-    }, [])
+   async function getAllData() {
+       await axios.get("https://dummyjson.com/products")
+        .then((res)=>{
+            setProduct(res.data.products)
+            setLoad(true)
+        })
+    }
 
+    useEffect(()=>{
+        getAllData() 
+    },[])
+
+    useEffect(()=>{
+        const uniqueCategory = [...new Set(product.map((item)=>item.category))]
+        setCategory(uniqueCategory)
+        // console.log(uniqueCategory)
+    },[product])
+
+    const handleFilter =(item)=>{
+        const filterItem = product.filter((categoryItem)=> categoryItem.category == item)
+        console.log(filterItem)
+    }
 
     return (
         <>
@@ -26,15 +53,15 @@ const ProductPage = () => {
                         <div className='mt-12.5'>
                             <h1 className='text-xl font-bold font-pop pb-3.75'>Shop by Category</h1>
                             <ul className='font-pop Proul'>
-                                <li>Woman’s Fashion</li>
-                                <li>Men’s Fashion</li>
-                                <li>Electronics</li>
-                                <li>Home & Lifestyle</li>
-                                <li>Medicine</li>
-                                <li>Sports & Outdoor</li>
-                                <li>Baby’s & Toys</li>
-                                <li>Groceries & Pets</li>
-                                <li>Health & Beauty</li>
+                                {
+                                    category.map((item)=>{
+                                        return(
+
+                                            <li onClick={()=>handleFilter(item)}>{item}</li>
+                                        )
+                                    })
+                                }
+                               
                             </ul>
                         </div>
                         <div className='mt-10'>
@@ -66,7 +93,7 @@ const ProductPage = () => {
                                 <option value="">12</option>
                             </select>
                         </div>
-                        <div className='flex flex-wrap mt-15 justify-between gap-y-10'>
+                        <div className='flex flex-wrap mt-15 justify-between gap-y-10 relative'>
                             {/* {
                                 product.map((item) => {
                                     console.log(product)
@@ -83,8 +110,20 @@ const ProductPage = () => {
                                     )
                                 })
                             } */}
-                            <Paginate   itemsPerPage ={6} products={product}
-                             />
+
+                            { 
+                               load ?
+                                <Paginate   itemsPerPage ={6} products={product} />
+                                :
+                                <>
+                                <Skeleton/>
+                                <Skeleton/>
+                                <Skeleton/>
+                                <Skeleton/>
+                                <Skeleton/>
+                                <Skeleton/>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

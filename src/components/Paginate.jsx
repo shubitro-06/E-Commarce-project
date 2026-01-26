@@ -18,7 +18,7 @@ function Items({ currentItems}) {
              imgs={item.thumbnail}
              Name={item.title}
              DisPrice={Math.round(item.price - (item.price * item.discountPercentage)/100)}
-             price={Math.round(item.price)}
+             price={Math.ceil(item.price)}
              review={item.reviews.length}
              percent={Math.round(item.discountPercentage)}
              rating={item.rating}
@@ -53,12 +53,15 @@ function Items({ currentItems}) {
       <Items currentItems={currentItems} />
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel=""
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel=""
         renderOnZeroPageCount={null}
+        className='absolute -bottom-20 left-0 flex gap-2.5'
+        pageClassName='bg-black text-white px-4 cursor-pointer'
+
       />
     </>
   )
