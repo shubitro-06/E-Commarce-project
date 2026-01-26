@@ -3,13 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Card from './Card';
+import { useSelector } from 'react-redux'
+import { AllProducts } from '../ProductSlice';
 
-const Paginate = ({ itemsPerPage , products}) => {
-    console.log(products)
-    const items = products;
+const Paginate = ({ itemsPerPage }) => {
+
+    const AllProducts = useSelector((state) => state.AllProducts.value)
+    const items = AllProducts;
 
 function Items({ currentItems}) {
-    
   return (
     <>
       {currentItems &&

@@ -5,7 +5,8 @@ import Paginate from '../components/Paginate';
 import Skeleton from '../components/skeleton';
 // import { Skeleton } from 'antd';
 import axios from 'axios';
-
+import { useDispatch } from 'react-redux'
+import { AllProducts } from '../ProductSlice';
 
 const ProductPage = () => {
 
@@ -20,11 +21,14 @@ const ProductPage = () => {
     //         setLoad(true)
     // }, [])
 
+    const dispatch = useDispatch()
+
    async function getAllData() {
        await axios.get("https://dummyjson.com/products")
         .then((res)=>{
             setProduct(res.data.products)
             setLoad(true)
+            dispatch(AllProducts(res.data.products))
         })
     }
 
@@ -110,10 +114,11 @@ const ProductPage = () => {
                                     )
                                 })
                             } */}
+                            {/* products={product} */}
 
                             { 
                                load ?
-                                <Paginate   itemsPerPage ={6} products={product} />
+                                <Paginate   itemsPerPage ={6}  />
                                 :
                                 <>
                                 <Skeleton/>
