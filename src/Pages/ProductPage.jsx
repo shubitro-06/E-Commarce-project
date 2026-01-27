@@ -6,13 +6,14 @@ import Skeleton from '../components/skeleton';
 // import { Skeleton } from 'antd';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
-import { AllProducts } from '../ProductSlice';
+import { AllProducts, FilterReducer } from '../ProductSlice';
 
 const ProductPage = () => {
 
     const [product, setProduct] = useState([])
     const [load,setLoad] = useState(false)
     const [category,setCategory] = useState([])
+    const [selvalue,setSelvalue] = useState([])
 
     // useEffect(() => {
     //     fetch('https://dummyjson.com/products')
@@ -44,7 +45,10 @@ const ProductPage = () => {
 
     const handleFilter =(item)=>{
         const filterItem = product.filter((categoryItem)=> categoryItem.category == item)
-        console.log(filterItem)
+        dispatch(FilterReducer(filterItem))
+    }
+    const handleChange = (e)=>{
+        setSelvalue(e.target.value)
     }
 
     return (
@@ -56,7 +60,8 @@ const ProductPage = () => {
                     <div className='w-[20%]'>
                         <div className='mt-12.5'>
                             <h1 className='text-xl font-bold font-pop pb-3.75'>Shop by Category</h1>
-                            <ul className='font-pop Proul'>
+                            <ul className='font-pop Proul cursor-pointer'>
+                                <li onClick={()=>dispatch(AllProducts(product))}>All Products</li>
                                 {
                                     category.map((item)=>{
                                         return(
@@ -90,11 +95,11 @@ const ProductPage = () => {
                     <div className='w-[80%]'>
                         <div className='flex justify-end gap-3 mt-12.5'>
                             <p> Show : </p>
-                            <select name="" id="" className='border-[#00000071] border py-0.5 px-9 rounded-[5px] '>
-                                <option value="">3</option>
-                                <option value="">6</option>
-                                <option value="">9</option>
-                                <option value="">12</option>
+                            <select name="" onChange={handleChange} id="" className='border-[#00000071] border py-0.5 px-9 rounded-[5px] '>
+                                {/* <option value="">3</option> */}
+                                <option value="6">6</option>
+                                <option value="9">9</option>
+                                <option value="12">12</option>
                             </select>
                         </div>
                         <div className='flex flex-wrap mt-15 justify-between gap-y-10 relative'>
@@ -118,7 +123,7 @@ const ProductPage = () => {
 
                             { 
                                load ?
-                                <Paginate   itemsPerPage ={6}  />
+                                <Paginate   itemsPerPage ={selvalue}  />
                                 :
                                 <>
                                 <Skeleton/>
