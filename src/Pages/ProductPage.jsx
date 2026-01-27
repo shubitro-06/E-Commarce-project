@@ -13,7 +13,7 @@ const ProductPage = () => {
     const [product, setProduct] = useState([])
     const [load,setLoad] = useState(false)
     const [category,setCategory] = useState([])
-    const [selvalue,setSelvalue] = useState([])
+    const [selvalue,setSelvalue] = useState("6")
 
     // useEffect(() => {
     //     fetch('https://dummyjson.com/products')
