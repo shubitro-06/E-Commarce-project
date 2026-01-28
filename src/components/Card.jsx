@@ -3,12 +3,16 @@ import { FaStar } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Rate } from 'antd';
+import { useNavigate } from "react-router";
 
-const Card = ({ Name, price, DisPrice, review, imgs, percent,rating }) => {
+const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id }) => {
+
+    // let navigate = useNavigate();
+    // onClick={()=> navigate(`/ProductDetails/${id}`)}
     return (
         <>
             <div className='font-pop h-87.5 w-67.5 '>
-                <div className='relative  group overflow-hidden'>
+                <div className='relative  group overflow-hidden' >
 
                     <img src={imgs} alt="" />
                     <div className='flex justify-between '>

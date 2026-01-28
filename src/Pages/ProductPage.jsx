@@ -75,7 +75,7 @@ const ProductPage = () => {
                         </div>
                         <div className='mt-10'>
                             <h1 className='text-xl font-bold font-pop pb-3.75'>Shop by Color</h1>
-                            <ul>
+                            <ul className='cursor-pointer'>
                                 <li className='flex gap-2 items-center pb-4.5'>
                                     <div className='bg-black h-2.75 w-2.75 rounded-full '></div>
                                     <p className='text-[#767676]'>Color 1</p>
