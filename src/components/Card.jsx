@@ -7,14 +7,14 @@ import { useNavigate } from "react-router";
 
 const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id }) => {
 
-    // let navigate = useNavigate();
-    // onClick={()=> navigate(`/ProductDetails/${id}`)}
+    let navigate = useNavigate();
+   
     return (
         <>
             <div className='font-pop h-87.5 w-67.5 '>
                 <div className='relative  group overflow-hidden' >
 
-                    <img src={imgs} alt="" />
+                    <img src={imgs} alt=""  onClick={()=> navigate(`/Details/${id}`)} />
                     <div className='flex justify-between '>
                         <div className='absolute top-3 left-3'>
                             <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>

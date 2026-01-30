@@ -5,25 +5,27 @@ import axios from 'axios';
 import { Rate } from 'antd';
 
 const ProductDetails = () => {
-    // const [product, setProduct] = useState([])
-    // let { id } = useParams();
+    const [product, setProduct] = useState({})
+    const [productImgs, setProductImgs] = useState([])
+    let { id } = useParams();
 
-    // async function getAllData() {
-    //     await axios.get(`https://dummyjson.com/products/${id}`)
-    //         .then((res) => {
-    //             setProduct(res.data)
+    async function getAllData() {
+        await axios.get(`https://dummyjson.com/products/${id}`)
+            .then((res) => {
+                setProduct(res.data)
+                console.log(res.data)
+                setProductImgs(res.data.images)
+            })
+    }
 
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     getAllData()
-    // }, [id])
+    useEffect(() => {
+        getAllData()
+    }, [id])
 
     return (
         <>
             <div className="container">
-                <BreadCrump />
+                <BreadCrump className="my-20"/>
 
                 {/* {
                     product.map((item) => {
@@ -32,27 +34,31 @@ const ProductDetails = () => {
                         )
                         })
                         } */}
-                <div>
+                <div className='flex justify-between'>
                     <div>
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                        <img src="" alt="" />
+                        {
+                            productImgs.map((item)=>{
+                                return(
+                                    <img src={item} alt="" className='w-[170px] h-[154px]' />
+                                )
+                            })
+                        }
                     </div>
-                    <img src="" alt="" />
+                    <img src={product.thumbnail} alt=""  className='w-[500px] h-[600px] '/>
                     <div>
-                        <h1 className='font-semibold text-2xl'></h1>
+                        <h1 className='font-semibold text-2xl'>{product.title} </h1>
                         <div className='flex gap-x-2 py-4'>
 
-                            <Rate allowHalf defaultValue="" />
-                            <h4 className='text-[#00000046]'></h4>
+{/* here is a change with sirs code on passing rating defaultvalue={product.rating || 0} */}
+                            <Rate allowHalf value={product?.rating ?? 0} />
+                            <h4 className='text-[#00000046]'>({product.reviews ? product.reviews.length : null} reviews)</h4>
                             <p className='text-[#00000046]'>/</p>
                             <p className='text-[#00FF66]'>In Stock</p>
                         </div>
-                        <p className='text-2xl'>$</p>
-                        <p className='font-pop py-6 border-b border-[#00000046] w-100'>description</p>
+                        <p className='text-2xl'>${product.price}</p>
+                        <p className='font-pop py-6 border-b border-[#00000046] w-100'>{product.description}</p>
 
-                        <div className='flex items-center gap-3'>
+                        <div className='flex items-center gap-3  py-6' >
                             <p className='text-xl'> Colors :</p>
                             <div className='flex gap-2 cursor-pointer'>
                                 <div className='h-5 w-5 bg-[#A0BCE0] rounded-full hover:border-3 hover:ease-linear hover:w-4.25 hover:h-4.25'></div>
