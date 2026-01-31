@@ -3,10 +3,17 @@ import BreadCrump from './components/BreadCrump'
 import { useParams } from "react-router";
 import axios from 'axios';
 import { Rate } from 'antd';
+import Button from './components/Button';
+import Redeli from './assets/Redeli.png';
+import { IoIosHeartEmpty } from "react-icons/io";
+import SecHead from './components/SecHead';
+import Card from './components/Card';
+import keyboard from './assets/keyboard.png';
 
 const ProductDetails = () => {
     const [product, setProduct] = useState({})
     const [productImgs, setProductImgs] = useState([])
+    const [counter, setCounter] = useState(0)
     let { id } = useParams();
 
     async function getAllData() {
@@ -25,7 +32,7 @@ const ProductDetails = () => {
     return (
         <>
             <div className="container">
-                <BreadCrump className="my-20"/>
+                <BreadCrump className="my-20" />
 
                 {/* {
                     product.map((item) => {
@@ -37,19 +44,19 @@ const ProductDetails = () => {
                 <div className='flex justify-between'>
                     <div>
                         {
-                            productImgs.map((item)=>{
-                                return(
+                            productImgs.map((item) => {
+                                return (
                                     <img src={item} alt="" className='w-[170px] h-[154px]' />
                                 )
                             })
                         }
                     </div>
-                    <img src={product.thumbnail} alt=""  className='w-[500px] h-[600px] '/>
+                    <img src={product.thumbnail} alt="" className='w-[500px] h-[600px] ' />
                     <div>
                         <h1 className='font-semibold text-2xl'>{product.title} </h1>
                         <div className='flex gap-x-2 py-4'>
 
-{/* here is a change with sirs code on passing rating defaultvalue={product.rating || 0} */}
+                            {/* here is a change with sirs code on passing rating defaultvalue={product.rating || 0} */}
                             <Rate allowHalf value={product?.rating ?? 0} />
                             <h4 className='text-[#00000046]'>({product.reviews ? product.reviews.length : null} reviews)</h4>
                             <p className='text-[#00000046]'>/</p>
@@ -68,24 +75,90 @@ const ProductDetails = () => {
                         <div className='flex items-center gap-3'>
                             <p className='text-xl'> Size :</p>
                             <div className='flex gap-2 cursor-pointer'>
-                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  '> 
-                                 <p className='text-sm font-medium font-pop'>XS</p>
+                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white hover:border-0  '>
+                                    <p className='text-sm font-medium font-pop'>XS</p>
                                 </div>
-                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  '> 
-                                 <p className='text-sm font-medium font-pop'>XS</p>
+                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white hover:border-0  '>
+                                    <p className='text-sm font-medium font-pop'>XS</p>
                                 </div>
-                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  '> 
-                                 <p className='text-sm font-medium font-pop'>XS</p>
+                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white hover:border-0  '>
+                                    <p className='text-sm font-medium font-pop'>XS</p>
                                 </div>
-                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  '> 
-                                 <p className='text-sm font-medium font-pop'>XS</p>
+                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white hover:border-0  '>
+                                    <p className='text-sm font-medium font-pop'>XS</p>
                                 </div>
-                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  '> 
-                                 <p className='text-sm font-medium font-pop'>XS</p>
+                                <div className='h-8 w-8 border rounded-sm pt-0.75 text-center mx-auto border-[#00000046] hover:bg-primary hover:ease-linear hover:text-white  hover:border-0 '>
+                                    <p className='text-sm font-medium font-pop'>XS</p>
                                 </div>
-                               
+
                             </div>
                         </div>
+
+                        <div className='flex gap-4 py-6 '>
+                            <div className='flex items-center' >
+                                <div className='text-2xl font-bold border border-[#00000046] h-11 w-10 text-center'
+                                    onClick={() => { setCounter(counter - 1); if (counter === 0) { null } }}>
+                                    <p className=' '>-</p>
+                                </div>
+                                <div className='border border-[#00000046] h-11 w-20 text-center flex justify-center items-center'>
+                                    <p>{counter}</p>
+                                </div>
+                                <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center'>
+                                    <p onClick={() => { setCounter(counter + 1) }}>+</p>
+                                </div>
+                            </div>
+                            <Button className="w-41.25 h-11 pb-5 px-0 mx-0">
+                                <p >Buy Now</p>
+                            </Button>
+
+                            <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center flex justify-center items-center'>
+                                <IoIosHeartEmpty className='' />
+                            </div>
+                        </div>
+                        <div>
+                            <img src={Redeli} alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div className='mt-35'>
+
+                    <SecHead
+                        header="Related Item"
+                    />
+                    <div className='flex justify-between'>
+                        <Card
+                            imgs={keyboard}
+                            Name="AK-900 Wired Keyboard"
+                            DisPrice="960"
+                            price="1160"
+                            review="75"
+                            percent="40"
+                        />
+                        <Card
+                            imgs={keyboard}
+                            Name="AK-900 Wired Keyboard"
+                            DisPrice="960"
+                            price="1160"
+                            review="75"
+                            percent="40"
+                        />
+                        <Card
+                            imgs={keyboard}
+                            Name="AK-900 Wired Keyboard"
+                            DisPrice="960"
+                            price="1160"
+                            review="75"
+                            percent="40"
+                        />
+                        <Card
+                            imgs={keyboard}
+                            Name="AK-900 Wired Keyboard"
+                            DisPrice="960"
+                            price="1160"
+                            review="75"
+                            percent="40"
+                        />
+                       
                     </div>
                 </div>
             </div>

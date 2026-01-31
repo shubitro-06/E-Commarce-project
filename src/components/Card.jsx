@@ -12,9 +12,9 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id }) => {
     return (
         <>
             <div className='font-pop h-87.5 w-67.5 '>
-                <div className='relative  group overflow-hidden' >
+                <div className='relative group overflow-hidden' >
 
-                    <img src={imgs} alt=""  onClick={()=> navigate(`/Details/${id}`)} />
+                    <img src={imgs} alt="" onClick={()=> navigate(`/Details/${id}`)} />
                     <div className='flex justify-between '>
                         <div className='absolute top-3 left-3'>
                             <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>
