@@ -9,11 +9,13 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import SecHead from './components/SecHead';
 import Card from './components/Card';
 import keyboard from './assets/keyboard.png';
+import DetSkeleton from './components/DetSkeleton';
 
 const ProductDetails = () => {
     const [product, setProduct] = useState({})
     const [productImgs, setProductImgs] = useState([])
     const [counter, setCounter] = useState(0)
+    const [load,setLoad] = useState(true)
     let { id } = useParams();
 
     async function getAllData() {
@@ -22,6 +24,7 @@ const ProductDetails = () => {
                 setProduct(res.data)
                 console.log(res.data)
                 setProductImgs(res.data.images)
+                setLoad(false)
             })
     }
 
@@ -41,6 +44,8 @@ const ProductDetails = () => {
                         )
                         })
                         } */}
+              {
+                !load ?
                 <div className='flex justify-between'>
                     <div>
                         {
@@ -96,22 +101,22 @@ const ProductDetails = () => {
 
                         <div className='flex gap-4 py-6 '>
                             <div className='flex items-center' >
-                                <div className='text-2xl font-bold border border-[#00000046] h-11 w-10 text-center'
+                                <div className='text-2xl font-bold border border-[#00000046] h-11 w-10 text-center cursor-pointer'
                                     onClick={() => { setCounter(counter - 1); if (counter === 0) { null } }}>
                                     <p className=' '>-</p>
                                 </div>
                                 <div className='border border-[#00000046] h-11 w-20 text-center flex justify-center items-center'>
                                     <p>{counter}</p>
                                 </div>
-                                <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center'>
+                                <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center cursor-pointer'>
                                     <p onClick={() => { setCounter(counter + 1) }}>+</p>
                                 </div>
                             </div>
-                            <Button className="w-41.25 h-11 pb-5 px-0 mx-0">
+                            <Button className="w-41.25 h-11 pb-5 px-0 mx-0 cursor-pointer">
                                 <p >Buy Now</p>
                             </Button>
 
-                            <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center flex justify-center items-center'>
+                            <div className='text-2xl font-semibold border border-[#00000046] h-11 w-10 text-center flex justify-center items-center cursor-pointer'>
                                 <IoIosHeartEmpty className='' />
                             </div>
                         </div>
@@ -119,9 +124,12 @@ const ProductDetails = () => {
                             <img src={Redeli} alt="" />
                         </div>
                     </div>
-                </div>
-                <div className='mt-35'>
+                </div> 
+                :
+                <DetSkeleton/>
+              }          
 
+                <div className='mt-35'>
                     <SecHead
                         header="Related Item"
                     />
