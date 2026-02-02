@@ -4,10 +4,18 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
+import { useDispatch } from 'react-redux'
+import { CartReducer, WishReducer } from '../ProductSlice';
 
-const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id }) => {
+const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id,DetailsItem }) => {
 
     let navigate = useNavigate();
+    const dispatch = useDispatch()
+
+    const handleCart = ()=>{
+        // navigate("/Cart")
+        dispatch(CartReducer(DetailsItem))
+    }
    
     return (
         <>
@@ -20,11 +28,11 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id }) => {
                             <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>
                         </div>
                         <div className='absolute top-3 right-3 flex flex-col gap-2'>
-                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center' />
+                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={()=> dispatch(WishReducer(DetailsItem))} />
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>
-                    <button className='bg-black w-full py-2 px-21.75 text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear'>
+                    <button onClick={handleCart} className='bg-black w-full py-2 px-21.75 text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear'>
                         Add to Cart
                     </button>
                 </div>

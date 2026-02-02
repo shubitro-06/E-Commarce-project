@@ -10,6 +10,8 @@ import ProductPage from './Pages/ProductPage';
 import { Provider } from 'react-redux'
 import store from './Store'
 import ProductDetails from './ProductDetails';
+import AddToCart from './Pages/AddToCart';
+import WishList from './Pages/WishList';
 
 const router = createBrowserRouter([
    {path: "/",
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "Shop", Component: ProductPage },
       { path: "Details/:id", Component: ProductDetails },
+      { path: "Cart", Component: AddToCart },
+      { path: "wishlist", Component: WishList },
       
     ],
   },

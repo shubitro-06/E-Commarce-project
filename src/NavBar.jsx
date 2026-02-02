@@ -5,8 +5,13 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { NavLink } from "react-router";
+import { useSelector } from 'react-redux'
 
 const NavBar = () => {
+
+    const data = useSelector((state) => state.AllProducts.cart)
+    const deta = useSelector((state) => state.AllProducts.wish)
+    console.log(deta)
     return (
         <>
             <nav className='mt-10 pb-4 border-b border-[#00000050]'>
@@ -15,7 +20,7 @@ const NavBar = () => {
                         <img src={Logo} alt="" />
                         <ul className='flex gap-12 navul cursor-pointer'>
                             <NavLink to="/" end>
-                            <li>Home</li>
+                                <li>Home</li>
                             </NavLink>
                             <li>Contact</li>
                             <li>About</li>
@@ -29,8 +34,19 @@ const NavBar = () => {
                             </div>
                             <div className='flex gap-4'>
                                 {/* <CiHeart className='w-6'/> */}
-                                <FaRegHeart className='w-6' />
-                                <MdOutlineShoppingCart className='w-6' />
+                                <NavLink to="/wishlist" end>
+                                <div className='relative'>
+                                    <FaRegHeart className='w-6' />
+                                    <div className='h-3.5 w-3.5 rounded-full bg-primary text-xs absolute -top-1.75 left-2.75 flex justify-center items-center text-white'>{deta.length}</div>
+                                </div>
+                                </NavLink>
+                                <NavLink to="/Cart" end>
+                                <div className='relative'>
+
+                                    <MdOutlineShoppingCart className='w-6 ' />
+                                    <div className='h-3.5 w-3.5 rounded-full bg-primary text-xs absolute -top-1.75 left-2.75 flex justify-center items-center text-white'>{data.length}</div>
+                                </div>
+                                </NavLink>
                             </div>
                         </div>
                     </div>

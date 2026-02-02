@@ -18,6 +18,7 @@ function Items({ currentItems}) {
         currentItems.map((item) => (
           <Card
              id={item.id}
+             DetailsItem={item}
              imgs={item.thumbnail}
              Name={item.title}
              DisPrice={Math.round(item.price - (item.price * item.discountPercentage)/100)}
