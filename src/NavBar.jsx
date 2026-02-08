@@ -10,8 +10,9 @@ import { useSelector } from 'react-redux'
 const NavBar = () => {
 
     const data = useSelector((state) => state.AllProducts.cart)
+   
     const deta = useSelector((state) => state.AllProducts.wish)
-    console.log(deta)
+ 
     return (
         <>
             <nav className='mt-10 pb-4 border-b border-[#00000050]'>

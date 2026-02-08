@@ -4,8 +4,12 @@ import CartItems from '../components/CartItems'
 import monitor from '../assets/Monitor.png'
 import Button2 from '../components/Button2'
 import Button from '../components/Button'
+import { useSelector } from 'react-redux'
 
 const AddToCart = () => {
+
+  const data = useSelector((state) => state.AllProducts.cart)
+  console.log(data)
   return (
     <>
       <div className="container">
@@ -13,20 +17,27 @@ const AddToCart = () => {
           className="mt-20"
         />
 
-        <div className='h-18 mt-20 '>
-          <ul className='font-pop flex justify-between'>
+        <div className='h-18 text-center mt-20 '>
+          <ul className='font-pop flex justify-between relative'>
             <li>Product</li>
-            <li>Price</li>
-            <li>Quantity</li>
+            <li className='absolute top-0 left-126.75'>Price</li>
+            <li className='absolute top-0 left-219.25'>Quantity</li>
             <li>Subtotal</li>
           </ul>
         </div>
-        <CartItems
-          imgs={monitor}
-          pdctName=""
-          price=""
-          subtotal=""
-        />
+        {
+          data.map((item)=>{
+            return(
+
+              <CartItems
+                imgs={item.thumbnail}
+                pdctName={item.title}
+                price={item.price}
+                subtotal={item.price}
+              />
+            )
+          })
+        }
 
         <div className='flex justify-between mt-6'>
           <Button2>Return To Shop</Button2>

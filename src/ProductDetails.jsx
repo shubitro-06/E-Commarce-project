@@ -104,7 +104,7 @@ const ProductDetails = () => {
                         <div className='flex gap-4 py-6 '>
                             <div className='flex items-center' >
                                 <div className='text-2xl font-bold border border-[#00000046] h-11 w-10 text-center cursor-pointer flex justify-center items-center'
-                                    onClick={() => { setCounter(counter - 1); if (counter === 0) { null } }}>
+                                    onClick={() => {  if (counter > 0) setCounter(counter - 1) }}>
                                     <FaMinus />
                                 </div>
                                 <div className='border border-[#00000046] h-11 w-20 text-center flex justify-center items-center'>

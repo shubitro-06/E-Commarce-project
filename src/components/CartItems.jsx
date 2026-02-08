@@ -5,10 +5,10 @@ const CartItems = ({ imgs, price, subtotal,pdctName }) => {
 
     return (
         <>
-            <div className='flex justify-between font-pop h-25.5   '>
-                <div>
-                <img src={imgs} alt="" />
-                <h1>{pdctName}</h1>
+            <div className='flex justify-between font-pop h-25.5 items-center '>
+                <div className='flex gap-5 items-center'>
+                <img src={imgs} alt="" className='h-15 w-13.5' />
+                <h1 className='w-24 '>{pdctName}</h1>
                 </div>
                 <p>${price}</p>
                 <input
