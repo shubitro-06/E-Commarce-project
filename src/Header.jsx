@@ -12,8 +12,8 @@ const Header = () => {
                             <div className='flex justify-between'>
                                 <div className='flex gap-2 w-[70%] justify-end'>
                                     <p className='text-[#FAFAFA]'>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
-                                    <NavLink to="/Shop" end>
-                                    <a href="#" className='text-[#FAFAFA] font-bold'>ShopNow</a>
+                                    <NavLink to="/Shop" end className='text-[#FAFAFA] font-bold'>
+                                        ShopNow
                                     </NavLink>
                                 </div>
 

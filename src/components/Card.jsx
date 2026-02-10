@@ -4,17 +4,21 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { CartReducer, WishReducer } from '../ProductSlice';
 
 const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id,DetailsItem }) => {
 
+    const data = useSelector((state) => state.AllProducts.cart)
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const handleCart = ()=>{
+    const handleCart = () => {
         // navigate("/Cart")
-        dispatch(CartReducer(DetailsItem))
+        if(!data.find((item) => item.id === id)) {
+
+            dispatch(CartReducer(DetailsItem))
+        }
     }
    
     return (
@@ -32,7 +36,7 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id,DetailsIt
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>
-                    <button onClick={handleCart} className='bg-black w-full py-2 px-21.75 text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear'>
+                    <button onClick={handleCart} className='bg-black w-full py-2 px-21.75 text-white absolute -bottom-11 group-hover:bottom-0 duration-300 ease-linear cursor-pointer'>
                         Add to Cart
                     </button>
                 </div>

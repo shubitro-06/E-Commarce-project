@@ -20,9 +20,12 @@ const WishList = () => {
 
                 <div className='flex justify-between flex-wrap mt-15'>
                     {
-                        deta.map((item) => {
+                        deta && deta.filter(item => item != null).map((item) => {
                             return (
                                 <Card
+                                    key={item.id}
+                                    id={item.id}
+                                    DetailsItem={item}
                                     imgs={item.thumbnail}
                                     Name={item.title}
                                     DisPrice={Math.round(item.price - (item.price * item.discountPercentage) / 100)}

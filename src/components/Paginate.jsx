@@ -15,8 +15,9 @@ function Items({ currentItems}) {
   return (
     <>
       {currentItems &&
-        currentItems.map((item) => (
+        currentItems.map((item,idx) => (
           <Card
+             key={idx}
              id={item.id}
              DetailsItem={item}
              imgs={item.thumbnail}

@@ -5,6 +5,7 @@ import monitor from '../assets/Monitor.png'
 import Button2 from '../components/Button2'
 import Button from '../components/Button'
 import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router'
 
 const AddToCart = () => {
 
@@ -26,10 +27,12 @@ const AddToCart = () => {
           </ul>
         </div>
         {
-          data.map((item)=>{
-            return(
+          data && data.filter(item => item != null).map((item) => {
+            return (
 
               <CartItems
+                id={item.id}
+                key={item.id}
                 imgs={item.thumbnail}
                 pdctName={item.title}
                 price={item.price}
@@ -40,7 +43,9 @@ const AddToCart = () => {
         }
 
         <div className='flex justify-between mt-6'>
-          <Button2>Return To Shop</Button2>
+          <NavLink to="/Shop" end>
+             <Button2> Return To Shop</Button2>
+          </NavLink>
           <Button2>Update Cart</Button2>
         </div>
         <div className='mt-20 flex justify-between'>

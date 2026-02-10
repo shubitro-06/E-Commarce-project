@@ -66,7 +66,7 @@ const ProductPage = () => {
                                     category.map((item)=>{
                                         return(
 
-                                            <li onClick={()=>handleFilter(item)}>{item}</li>
+                                            <li key={item} onClick={()=>handleFilter(item)}>{item}</li>
                                         )
                                     })
                                 }
