@@ -6,33 +6,70 @@ import { Rate } from 'antd';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux'
 import { CartReducer, WishReducer } from '../ProductSlice';
+import { Bounce, toast } from 'react-toastify';
 
-const Card = ({ Name, price, DisPrice, review, imgs, percent,rating,id,DetailsItem }) => {
+const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, DetailsItem }) => {
 
     const data = useSelector((state) => state.AllProducts.cart)
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
+    const notify = (matchItem) => {
+
+         matchItem == undefined ?
+            toast.success('Your cart is added', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            })
+            :
+            toast.warn('Cart is Already Added', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+    
+    }
+
     const handleCart = () => {
         // navigate("/Cart")
-        if(!data.find((item) => item.id === id)) {
+        // if(!data.find((item) => item.id === id)) {
 
-            dispatch(CartReducer(DetailsItem))
-        }
+        //     dispatch(CartReducer(DetailsItem))
+        //     notify()
+        // }  
+        // or,
+        const matchItem = data.find((item) => item.id === id)
+        console.log(matchItem)
+        !matchItem ?
+            dispatch(CartReducer({...DetailsItem , quan : 1})) : null ;
+        notify(matchItem)
     }
-   
+
     return (
         <>
             <div className='font-pop h-87.5 w-67.5 '>
                 <div className='relative group overflow-hidden' >
 
-                    <img src={imgs} alt="" onClick={()=> navigate(`/Details/${id}`)} />
+                    <img src={imgs} alt="" onClick={() => navigate(`/Details/${id}`)} />
                     <div className='flex justify-between '>
                         <div className='absolute top-3 left-3'>
                             <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>
                         </div>
                         <div className='absolute top-3 right-3 flex flex-col gap-2'>
-                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={()=> dispatch(WishReducer(DetailsItem))} />
+                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={() => dispatch(WishReducer(DetailsItem))} />
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>

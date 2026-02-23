@@ -37,6 +37,7 @@ const AddToCart = () => {
                 pdctName={item.title}
                 price={item.price}
                 subtotal={item.price}
+                Iquantity={item.quan}
               />
             )
           })
@@ -50,10 +51,10 @@ const AddToCart = () => {
         </div>
         <div className='mt-20 flex justify-between'>
           <div className=''>
-            <input type="text" placeholder='Coupon Code' className='h-[56px] w-[300px] py-4 pl-6 pr-[164px] border rounded-sm outline-0 mr-4' />
+            <input type="text" placeholder='Coupon Code' className='h-14 w-75 py-4 pl-6 pr-41 border rounded-sm outline-0 mr-4' />
             <Button>Apply Coupon</Button>
           </div>
-          <div className='w-[470px] h-[324px] border font-pop rounded-sm py-6 px-8'>
+          <div className='w-117.5 h-81 border font-pop rounded-sm py-6 px-8'>
             <h1 className='text-xl font-medium'>Cart Total</h1>
             <div className='flex justify-between border-b border-[#00000046] py-4 '>
               <p>Subtotal:</p>

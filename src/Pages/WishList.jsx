@@ -18,7 +18,7 @@ const WishList = () => {
                     <Button2>Move All To Bag</Button2>
                 </div>
 
-                <div className='flex justify-between flex-wrap mt-15'>
+                <div className='flex gap-4 flex-wrap mt-15'>
                     {
                         deta && deta.filter(item => item != null).map((item) => {
                             return (
