@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
 import BreadCrump from '../components/BreadCrump';
 import Paginate from '../components/Paginate';
-import Skeleton from '../components/skeleton';
+import Skeleton from '../components/Skeleton';
 // import { Skeleton } from 'antd';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
