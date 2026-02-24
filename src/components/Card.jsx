@@ -5,18 +5,20 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux'
-import { CartReducer, WishReducer } from '../ProductSlice';
+import { CartReducer, RemoveReducerWish, subtotalReducer, WishReducer } from '../ProductSlice';
 import { Bounce, toast } from 'react-toastify';
+import { MdDelete } from "react-icons/md";
 
-const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, DetailsItem }) => {
+const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, DetailsItem,className }) => {
 
     const data = useSelector((state) => state.AllProducts.cart)
+    const wish = useSelector((state) => state.AllProducts.wish)
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
     const notify = (matchItem) => {
 
-         matchItem == undefined ?
+        matchItem == undefined ?
             toast.success('Your cart is added', {
                 position: "top-right",
                 autoClose: 1500,
@@ -40,7 +42,7 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, Detail
                 theme: "colored",
                 transition: Bounce,
             });
-    
+
     }
 
     const handleCart = () => {
@@ -52,10 +54,80 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, Detail
         // }  
         // or,
         const matchItem = data.find((item) => item.id === id)
-        console.log(matchItem)
+        // console.log(matchItem)
         !matchItem ?
-            dispatch(CartReducer({...DetailsItem , quan : 1})) : null ;
+            dispatch(CartReducer({ ...DetailsItem, quan: 1 })) : null;
         notify(matchItem)
+        dispatch(subtotalReducer())
+    }
+
+    const notify2 = (matchWish)=>{
+        matchWish == undefined ?
+        toast.success('Your wishCart is added', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            }) :
+            toast.warn('WishCart is Already Added', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+
+    }
+
+    const handleWish = () => {
+        // const matchWish = wish.find((item) => item.id === id)
+        // if (!matchWish) {
+        //     dispatch(WishReducer(DetailsItem))
+        //     toast.success('Added to wishlist', {
+        //         position: "top-right",
+        //         autoClose: 1500,
+        //         hideProgressBar: false,
+        //         closeOnClick: false,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "colored",
+        //         transition: Bounce,
+        //     })
+        // } else {
+        //     toast.warn('Already in wishlist', {
+        //         position: "top-right",
+        //         autoClose: 1500,
+        //         hideProgressBar: false,
+        //         closeOnClick: false,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "colored",
+        //         transition: Bounce,
+        //     })
+        // }
+
+        // or ,
+         const matchWish = wish.find((item)=> item.id === id)
+
+        !wish.find((item)=> item.id === id) ?
+         dispatch(WishReducer(DetailsItem)) : null;
+         notify2(matchWish)
+    }
+
+    const handleRemoveWish = ()=>{
+        dispatch(RemoveReducerWish(id))
+        
     }
 
     return (
@@ -67,9 +139,11 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, Detail
                     <div className='flex justify-between '>
                         <div className='absolute top-3 left-3'>
                             <h6 className='bg-primary text-white h-6.5 text-center w-14.75'>-{percent}%</h6>
+                            <MdDelete className= {` ${className} invisible absolute top-10 text-3xl cursor-pointer h-6.5 w-14.75  bg-primary` }
+                            onClick={handleRemoveWish} />
                         </div>
                         <div className='absolute top-3 right-3 flex flex-col gap-2'>
-                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={() => dispatch(WishReducer(DetailsItem))} />
+                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={handleWish} />
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>

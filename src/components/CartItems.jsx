@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { downReducer, RemoveReducer, upReducer } from '../ProductSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { downReducer, RemoveReducer, subtotalReducer, upReducer } from '../ProductSlice';
 import { Bounce, toast } from 'react-toastify';
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
 const CartItems = ({ imgs, price, subtotal,pdctName,id,Iquantity }) => {
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
     // console.log(id)
     const dispatch = useDispatch();
     const handleRemove = () => {
         dispatch(RemoveReducer(id))
+        dispatch(subtotalReducer())
     }
 
     const notify = ()=> toast.error('Your cart is Removed', {
@@ -24,14 +25,17 @@ progress: undefined,
 theme: "colored",
 transition: Bounce,
 });
+ 
 
 const handleUpPro =()=>{
         dispatch(upReducer(id))
+        dispatch(subtotalReducer())
     
 }
 const handleDwnPro =()=>{
     if (Iquantity >1)
         dispatch(downReducer(id))
+        dispatch(subtotalReducer())
 }
     return (
         <>
@@ -54,7 +58,7 @@ const handleDwnPro =()=>{
                     // aria-label="Quantity"
                     
                 /> */}
-                <div className=' border border-[#00000046] h-11 w-18 rounded-sm flex justify-between items-center p-2 '>
+                <div className=' border border-[#00000046] h-11 w-16 rounded-sm flex gap-4 items-center p-3 '>
                     {Iquantity}
                     <div className=' cursor-pointer '>
 
@@ -62,7 +66,7 @@ const handleDwnPro =()=>{
                        <IoIosArrowDown onClick={handleDwnPro} />
                     </div>
                 </div>
-                <p>${subtotal}</p>
+                <p>${(Iquantity * price).toFixed(2)}</p>
             </div>
         </>
     )

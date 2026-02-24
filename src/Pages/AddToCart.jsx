@@ -10,7 +10,8 @@ import { NavLink } from 'react-router'
 const AddToCart = () => {
 
   const data = useSelector((state) => state.AllProducts.cart)
-  console.log(data)
+  const subTotal = useSelector((state) => state.AllProducts.subtotal)
+  // console.log(data)
   return (
     <>
       <div className="container">
@@ -58,7 +59,7 @@ const AddToCart = () => {
             <h1 className='text-xl font-medium'>Cart Total</h1>
             <div className='flex justify-between border-b border-[#00000046] py-4 '>
               <p>Subtotal:</p>
-              <p>$</p>
+              <p>${subTotal.toFixed(2)} </p>
             </div>
             <div className='flex justify-between border-b border-[#00000046] py-4 '>
               <p>Shipping:</p>
@@ -66,7 +67,7 @@ const AddToCart = () => {
             </div>
             <div className='flex justify-between  py-4 '>
               <p>Total:</p>
-              <p>$</p>
+              <p>${subTotal.toFixed(2)} </p>
             </div>
             <div className='mt-4 text-center'>
               <Button >Procces to checkout</Button>

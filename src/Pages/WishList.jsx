@@ -4,6 +4,8 @@ import Button2 from '../components/Button2'
 import SecHead from '../components/SecHead'
 import { useSelector } from 'react-redux'
 import Card from '../components/Card'
+import WishItems from '../components/WishItems'
+import { MdDelete } from "react-icons/md";
 
 const WishList = () => {
     const deta = useSelector((state) => state.AllProducts.wish)
@@ -18,7 +20,7 @@ const WishList = () => {
                     <Button2>Move All To Bag</Button2>
                 </div>
 
-                <div className='flex gap-4 flex-wrap mt-15'>
+                <div className=' ml-10 flex gap-15 flex-wrap mt-15'>
                     {
                         deta && deta.filter(item => item != null).map((item) => {
                             return (
@@ -30,9 +32,10 @@ const WishList = () => {
                                     Name={item.title}
                                     DisPrice={Math.round(item.price - (item.price * item.discountPercentage) / 100)}
                                     price={Math.ceil(item.price)}
-                                    review={item.reviews.length}
+                                    // review={item.reviews.length}
                                     percent={Math.round(item.discountPercentage)}
-                                    rating={item.rating}
+                                    // rating={item.rating}
+                                    className="visible"
                                 />
                             )
                         })
