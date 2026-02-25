@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaStar } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -10,6 +10,8 @@ import { Bounce, toast } from 'react-toastify';
 import { MdDelete } from "react-icons/md";
 
 const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, DetailsItem,className }) => {
+ 
+    
 
     const data = useSelector((state) => state.AllProducts.cart)
     const wish = useSelector((state) => state.AllProducts.wish)
@@ -126,8 +128,42 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, Detail
     }
 
     const handleRemoveWish = ()=>{
-        dispatch(RemoveReducerWish(id))
+        // setAddWish()
+           dispatch(RemoveReducerWish(id)),
+        toast.error('Your WishCart is Removed', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
         
+    }
+    const [addWish,setAddWish] = useState(true)
+    const notify3 = ()=>{
+         
+        toast.error('Your WishCart is Removed', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+            });
+    }
+
+    const handleDeleteWish =()=>{
+
+            dispatch(RemoveReducerWish(id))
+        
+            notify3()
     }
 
     return (
@@ -143,7 +179,11 @@ const Card = ({ Name, price, DisPrice, review, imgs, percent, rating, id, Detail
                             onClick={handleRemoveWish} />
                         </div>
                         <div className='absolute top-3 right-3 flex flex-col gap-2'>
-                            <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={handleWish} />
+                           {  addWish ?
+                               
+                          <IoIosHeartEmpty className='bg-white h-8.5 w-8.5 rounded-full text-center cursor-pointer' onClick={handleWish} />:
+                          <IoIosHeartEmpty className='text-primary' onClick={handleDeleteWish}/>
+                        } 
                             <MdOutlineRemoveRedEye className='bg-white h-8.5 w-8.5 rounded-full text-2xl text-center' />
                         </div>
                     </div>
