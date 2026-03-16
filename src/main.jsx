@@ -14,6 +14,8 @@ import AddToCart from './Pages/AddToCart';
 import WishList from './Pages/WishList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SingUp from './Pages/SingUp';
+import LogIn from './Pages/LogIn';
 
 const router = createBrowserRouter([
    {path: "/",
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       { path: "Details/:id", Component: ProductDetails },
       { path: "Cart", Component: AddToCart },
       { path: "wishlist", Component: WishList },
+      { path: "sing", Component: SingUp },
+      { path: "log", Component: LogIn },
       
     ],
   },
